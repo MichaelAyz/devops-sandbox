@@ -27,8 +27,9 @@ up:
 	else \
 		echo "[*] Nginx already running"; \
 	fi
-	@# Install API dependencies
-	pip3 install -q -r platform/requirements.txt
+	@# Install API dependencies in a virtual environment
+	@if [ ! -d "venv" ]; then python3 -m venv venv; fi
+	@./venv/bin/pip install -q -r platform/requirements.txt
 	@# Start cleanup daemon
 	@if [ ! -f .cleanup_daemon.pid ] || ! kill -0 $$(cat .cleanup_daemon.pid 2>/dev/null) 2>/dev/null; then \
 		nohup bash platform/cleanup_daemon.sh > /dev/null 2>&1 & \
@@ -47,7 +48,7 @@ up:
 	fi
 	@# Start API server
 	@if [ ! -f .api.pid ] || ! kill -0 $$(cat .api.pid 2>/dev/null) 2>/dev/null; then \
-		nohup python3 platform/api.py > logs/api.log 2>&1 & \
+		nohup ./venv/bin/python platform/api.py > logs/api.log 2>&1 & \
 		echo $$! > .api.pid; \
 		echo "[+] API server started (PID: $$(cat .api.pid))"; \
 	else \

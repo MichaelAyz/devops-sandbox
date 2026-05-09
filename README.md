@@ -55,7 +55,7 @@ When an environment is destroyed, Nginx is disconnected from that network before
 
 ```bash
 sudo apt update
-sudo apt install -y docker.io python3 python3-pip jq curl make xxd
+sudo apt install -y docker.io python3 python3-pip python3-venv jq curl make
 sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
 # Log out and back in for Docker group to take effect

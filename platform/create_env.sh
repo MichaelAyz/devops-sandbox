@@ -26,7 +26,7 @@ TTL_MINUTES="${2:-${DEFAULT_TTL:-30}}"
 
 # --- Generate unique ENV ID ---
 TIMESTAMP=$(date +%s)
-RANDOM_HEX=$(head -c 4 /dev/urandom | xxd -p)
+RANDOM_HEX=$(od -An -N4 -tx1 /dev/urandom | tr -d ' \n')
 ENV_ID="env-${TIMESTAMP}-${RANDOM_HEX}"
 
 # --- Derived names ---
