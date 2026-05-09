@@ -227,12 +227,3 @@ devops-sandbox/
 └── README.md
 ```
 
-## Known Limitations
-
-1. **Single VM only** — the platform is designed for a single host; no multi-node support.
-2. **Log shipping (Approach A)** — uses `docker logs -f` with PID tracking. If the host crashes, orphaned log processes may remain.
-3. **No TLS** — Nginx serves over HTTP only. For production, add Let's Encrypt/certbot.
-4. **No authentication** — the API and environments are open. Add API keys for production use.
-5. **Port 80 only** — all environments are routed by path (`/env/{id}/`), not by subdomain.
-6. **Health monitor resolution** — polls every 30 seconds, so outage detection can take up to 90 seconds (3 × 30s).
-7. **Cleanup daemon resolution** — checks every 60 seconds, so environments may live up to 60 seconds past their TTL.
