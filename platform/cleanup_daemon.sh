@@ -34,7 +34,7 @@ while true; do
 
         if [ "$NOW_EPOCH" -gt "$EXPIRY_EPOCH" ]; then
             log "Environment $ENV_ID EXPIRED (created: $CREATED_AT, TTL: ${TTL_SECONDS}s). Destroying..."
-            if "$SCRIPT_DIR/destroy_env.sh" "$ENV_ID" >> "$LOG_FILE" 2>&1; then
+            if bash "$SCRIPT_DIR/destroy_env.sh" "$ENV_ID" >> "$LOG_FILE" 2>&1; then
                 log "Environment $ENV_ID destroyed successfully"
             else
                 log "ERROR: Failed to destroy environment $ENV_ID"
