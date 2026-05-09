@@ -1,0 +1,6 @@
+# Force LF line endings for all files (critical for bash scripts on Linux)
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.conf text eol=lf
+Makefile text eol=lf

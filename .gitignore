@@ -1,0 +1,9 @@
+logs/
+envs/
+.env
+__pycache__/
+*.pyc
+*.pid
+.cleanup_daemon.pid
+.health_monitor.pid
+.api.pid
